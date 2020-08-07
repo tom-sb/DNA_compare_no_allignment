@@ -11,16 +11,13 @@ class Seqpicture:
 	def makePic(self, path):
 		data = self.datacleaning(path)
 		matrix = [[] for i in range(len(data)//70)]
-		print(self.alpha)
-		print(data)
 		it = 0
 		for row in range(len(data)//70):
 			for col in range(70):
 				if it+1 == len(data):
 					break
-				if it+1 != 69*(row+1):
+				if it != (70*(row+1))-1:
 					pair = data[it]+data[it+1]
-					print(it, end='')
 					matrix[row].append(self.alpha[pair])
 				it += 1
 		return np.array(matrix)
@@ -32,5 +29,5 @@ class Seqpicture:
 		return data
 
 mypic = Seqpicture("sequence.fasta")
-plt.imshow(mypic.picture)
-plt.show()
+#plt.imshow(mypic.picture)
+#plt.show()
