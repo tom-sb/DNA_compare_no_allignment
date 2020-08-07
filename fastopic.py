@@ -2,10 +2,10 @@ from Bio import SeqIO
 import numpy as np
 from matplotlib import pyplot as plt
 
-class Seqpicture:
+class Seqpic:
 
 	def __init__(self, path):
-		self.alpha = {'AA':1,'AG':17,'AC':34,'AT':51,'GA':68,'GG':85,'GC':102,'GT':119,'CA':136,'CG':153,'CC':170,'CT':187,'TA':204,'TG':221,'TC':238,'TT':255}
+		self.alpha = {'AA':[1,0],'AG':[17,0],'AC':[34,0],'AT':[51,0],'GA':[68,0],'GG':[85,0],'GC':[102,0],'GT':[119,0],'CA':[136,0],'CG':[153,0],'CC':[170,0],'CT':[187,0],'TA':[204,0],'TG':[221,0],'TC':[238,0],'TT':[255,0]}
 		self.picture = self.makePic(path)
 
 	def makePic(self, path):
@@ -18,7 +18,9 @@ class Seqpicture:
 					break
 				if it != (70*(row+1))-1:
 					pair = data[it]+data[it+1]
-					matrix[row].append(self.alpha[pair])
+					matrix[row].append(self.alpha[pair][0])
+					self.alpha[pair][1] += 1
+
 				it += 1
 		return np.array(matrix)
 
@@ -28,6 +30,21 @@ class Seqpicture:
 			data = str(record.seq.upper())
 		return data
 
-mypic = Seqpicture("sequence.fasta")
-#plt.imshow(mypic.picture)
-#plt.show()
+	def picShow(self):
+		plt.imshow(self.picture)
+		plt.show()
+	
+	def makeHist(self):
+		hist = list(self.alpha.values())		
+		return hist
+	
+	def histShow(self):
+		first,second = zip(*list(self.alpha.values()))
+		plt.bar(first, second, 9)
+		plt.xticks(first, first)
+		plt.ylim(0,200)
+		plt.show()
+		
+
+#mypic = Seqpic("sequence.fasta")
+
