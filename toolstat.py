@@ -46,13 +46,22 @@ class Statpic:
 	def getKurtosis(self, histo):
 		kurtosis = 0
 		for i in range(len(self.prob)):
-			kurtosis += pow(histo[i][0]-self.average,4) * self.prob[i] -3
-		kurtosis = kurtosis / pow(self.desv,4)
+			kurtosis += pow(histo[i][0]-self.average,4) * self.prob[i] 
+		kurtosis =(kurtosis / pow(self.desv,4))-3
 		print("kurtosis",kurtosis)
 		return kurtosis
 
 	def getEnergy(self):
-		return 1
+		energy = 0
+		for i in range(len(self.prob)):
+			energy += pow(self.prob[i],2)
+		print("energy",energy)
+		return energy
+		
 	def getEntropy(self):
-		return 1
+		entropy = 0
+		for i in range(len(self.prob)):
+			entropy += self.prob[i] * math.log(self.prob[i],2)
+		print("entropy",entropy*-1)
+		return entropy*-1
 		
