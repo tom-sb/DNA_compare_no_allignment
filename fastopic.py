@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 class Seqpic:
 
 	def __init__(self, path):
+		self.title = path
 		self.alpha = {'AA':[1,0],'AG':[17,0],'AC':[34,0],'AT':[51,0],'GA':[68,0],'GG':[85,0],'GC':[102,0],'GT':[119,0],'CA':[136,0],'CG':[153,0],'CC':[170,0],'CT':[187,0],'TA':[204,0],'TG':[221,0],'TC':[238,0],'TT':[255,0]}
 		self.picture = self.makePic(path)
 
@@ -42,6 +43,7 @@ class Seqpic:
 		first,second = zip(*list(self.alpha.values()))
 		plt.bar(first, second, 9)
 		plt.xticks(first, first)
+		plt.title(self.title)
 		plt.ylim(0,200)
 		plt.show()
 		
