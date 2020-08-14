@@ -1,5 +1,6 @@
 from fastopic import Seqpic
 from toolstat import Statpic
+from mypdist import Pdist
 import os
 
 fastaFile = input('ingreser nombre de archivo contenedor de archivos .fasta: ')+'/'
@@ -25,10 +26,13 @@ for i in range(n):
 
 statarr = []
 for i in range(n):
-	picarr[i].picShow()
-	picarr[i].histShow()
+	#picarr[i].picShow()
+	#picarr[i].histShow()
 	stat = Statpic(picarr[i])
 	statarr.append(stat.makeVecFeatures())
-
+"""
 for i in range(n):
 	print(statarr[i])
+"""
+pdist = Pdist(statarr)
+print(pdist.vector)
