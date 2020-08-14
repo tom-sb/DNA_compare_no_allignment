@@ -1,13 +1,15 @@
 from Bio import SeqIO
 import numpy as np
 from matplotlib import pyplot as plt
+import os
 
 class Seqpic:
 
-	def __init__(self, path):
-		self.title = path
+	def __init__(self, path,outpath_):
+		self.title = ""
 		self.alpha = {'AA':[1,0],'AG':[17,0],'AC':[34,0],'AT':[51,0],'GA':[68,0],'GG':[85,0],'GC':[102,0],'GT':[119,0],'CA':[136,0],'CG':[153,0],'CC':[170,0],'CT':[187,0],'TA':[204,0],'TG':[221,0],'TC':[238,0],'TT':[255,0]}
 		self.picture = self.makePic(path)
+		self.outpath = outpath_
 
 	def makePic(self, path):
 		data = self.datacleaning(path)
@@ -29,10 +31,12 @@ class Seqpic:
 		sequences = SeqIO.parse(path,dtype)
 		for record in sequences:
 			data = str(record.seq.upper())
+			self.title = str(record.id)
 		return data
 
 	def picShow(self):
 		plt.imshow(self.picture)
+		plt.savefig(self.outpath+self.title+'.png')
 		plt.show()
 	
 	def makeHist(self):
@@ -44,7 +48,8 @@ class Seqpic:
 		plt.bar(first, second, 9)
 		plt.xticks(first, first)
 		plt.title(self.title)
-		plt.ylim(0,200)
+		plt.ylim(0)
+		plt.savefig(self.outpath+self.title+'histo.png')
 		plt.show()
 		
 
