@@ -18,6 +18,7 @@ class Pdist:
 		for i in range(n-1):
 			for j in range(i+1,n):
 				if metric == 1:	
-					vecDist.append([i,j,self.euclideanDist(self.matrix[i], self.matrix[j])])
+					#vecDist.append([i,j,self.euclideanDist(self.matrix[i], self.matrix[j])])
+					vecDist.append(self.euclideanDist(self.matrix[i], self.matrix[j]))
 		return vecDist
 	

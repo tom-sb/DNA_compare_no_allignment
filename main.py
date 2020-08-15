@@ -2,22 +2,31 @@ from fastopic import Seqpic
 from toolstat import Statpic
 from mypdist import Pdist
 import os
+from scipy.cluster.hierarchy import dendrogram, linkage
+from matplotlib import pyplot as plt
 
 fastaFile = input('ingreser nombre de archivo contenedor de archivos .fasta: ')+'/'
 outpath = "out"+fastaFile
 ##############################
 with os.scandir() as itr: 
-    find = False
-    for entry in itr :
-        if entry.name+'/' == outpath:
-            find = True
-            break
-    if find == False:
-        os.mkdir(outpath)
+	findin = False
+	findout = False
+	for entry in itr :
+		if entry.name+'/' == fastaFile:
+			arr = sorted(os.listdir(fastaFile))
+			findin = True
+		if entry.name+'/' == outpath:
+			findout = True
+	if findout == False:
+		os.mkdir(outpath)
+	if findin == False:
+		print('error al ingresar directorio, "'+fastaFile+'" no existe, ingrese un directorio q exista.')
+		raise SystemExit
 ###############################
 
 
-arr = os.listdir(fastaFile)
+#arr = sorted(os.listdir(fastaFile))
+
 n = len(arr)
 picarr=[]
 
@@ -30,9 +39,19 @@ for i in range(n):
 	#picarr[i].histShow()
 	stat = Statpic(picarr[i])
 	statarr.append(stat.makeVecFeatures())
-"""
-for i in range(n):
-	print(statarr[i])
-"""
+
+#for i in range(n):
+#	print(statarr[i])
+
 pdist = Pdist(statarr)
-print(pdist.vector)
+vec = pdist.vector
+
+Z=linkage(vec,'ward')
+Z2=linkage(statarr,'single',metric='euclidean')
+
+#fig = plt.figure(figsize=(25,10))
+dn = dendrogram(Z)
+plt.show()
+dn2 = dendrogram(Z2)
+plt.show()
+
