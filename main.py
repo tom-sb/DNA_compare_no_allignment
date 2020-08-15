@@ -29,6 +29,7 @@ with os.scandir() as itr:
 
 n = len(arr)
 picarr=[]
+labelarr=[]
 
 for i in range(n):
 	picarr.append(Seqpic(fastaFile+arr[i],outpath))
@@ -37,6 +38,7 @@ statarr = []
 for i in range(n):
 	#picarr[i].picShow()
 	#picarr[i].histShow()
+	labelarr.append(picarr[i].title)
 	stat = Statpic(picarr[i])
 	statarr.append(stat.makeVecFeatures())
 
@@ -46,12 +48,13 @@ for i in range(n):
 pdist = Pdist(statarr)
 vec = pdist.vector
 
-Z=linkage(vec,'ward')
-Z2=linkage(statarr,'single',metric='euclidean')
+Z=linkage(vec,'average')
+#Z2=linkage(statarr,'single',metric='euclidean')
 
-#fig = plt.figure(figsize=(25,10))
-dn = dendrogram(Z)
+fig = plt.figure(figsize=(25,10))
+dn = dendrogram(Z,orientation='left',labels=labelarr)
+fig.tight_layout()
 plt.show()
-dn2 = dendrogram(Z2)
-plt.show()
+#dn2 = dendrogram(Z2)
+#plt.show()
 

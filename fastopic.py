@@ -31,7 +31,7 @@ class Seqpic:
 		sequences = SeqIO.parse(path,dtype)
 		for record in sequences:
 			data = str(record.seq.upper())
-			self.title = str(record.id)
+			self.title = str(record.description)
 		return data
 
 	def picShow(self):
