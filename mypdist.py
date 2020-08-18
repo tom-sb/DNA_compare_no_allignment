@@ -4,6 +4,7 @@ class Pdist:
 	def __init__(self, in_matrix,metric=1):
 		self.matrix = in_matrix
 		self.vector = self.getVectorDist(metric) 
+		self.vectorId = self.getVectorDistId(metric) 
 		#self.euclidean = self.euclideanDist()
 	
 	def euclideanDist(self, vecA, vecB):
@@ -22,3 +23,11 @@ class Pdist:
 					vecDist.append(self.euclideanDist(self.matrix[i], self.matrix[j]))
 		return vecDist
 	
+	def getVectorDistId(self,metric):
+		n = len(self.matrix)
+		vecDist = []
+		for i in range(n-1):
+			for j in range(i+1,n):
+				if metric == 1:	
+					vecDist.append([i,j,self.euclideanDist(self.matrix[i], self.matrix[j])])
+		return vecDist

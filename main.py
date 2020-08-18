@@ -48,13 +48,24 @@ for i in range(n):
 	stat = Statpic(picarr[i])
 	statarr.append(stat.makeVecFeatures())
 
-#for i in range(n):
-#	print(statarr[i])
+print("##############################################")
+print("vectores de caracteristicas")
+for i in range(n):
+	print(statarr[i])
 
 pdist = Pdist(statarr)
 vec = pdist.vector
+vecid = pdist.vectorId
+print("##############################################")
+print("Indice  ---  nombres")
+for i in range(n):
+	print(i," , ",labelarr[i])
+print("##############################################")
+print("matriz triangular de similitus aqui abajo")
+print(vecid)
+
 ############# PCA ####
-print(statarr)
+#print(statarr)
 X=statarr
 columns=['a','b','c','d']#X.columns.values
 pca=PCA(n_components=2)
