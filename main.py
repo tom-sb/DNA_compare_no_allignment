@@ -41,6 +41,7 @@ for i in range(n):
 	picarr.append(Seqpic(fastaFile+arr[i],outpath))
 
 statarr = []
+statarr2 = []
 for i in range(n):
 	#picarr[i].picShow()
 	#picarr[i].histShow()
@@ -50,6 +51,7 @@ for i in range(n):
 
 print("##############################################")
 print("vectores de caracteristicas")
+print("minskowski distance r1")
 for i in range(n):
 	print(statarr[i])
 
