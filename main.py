@@ -55,7 +55,7 @@ print("minskowski distance r1")
 for i in range(n):
 	print(statarr[i])
 
-pdist = Pdist(statarr)
+pdist = Pdist(statarr,metric=2)
 vec = pdist.vector
 vecid = pdist.vectorId
 print("##############################################")
@@ -65,8 +65,20 @@ for i in range(n):
 print("##############################################")
 print("matriz triangular de similitus aqui abajo")
 print(vecid)
-newvec = pdist.getVsAll(3)
+newvec = pdist.getVsAll(9)
+indexvec=[]
+valvec=[]
+for i in range(n-1):
+	indexvec.append(labelarr[newvec[i][0]])
+	valvec.append(newvec[i][1])
+print("testtttttttt")
 print(newvec)
+fig, ax = plt.subplots()
+ax.plot(indexvec,valvec, '-o', ms=20, lw=2, alpha = 0.7, mfc='orange')
+plt.xticks(ha='left',rotation=-45)
+ax.grid(True)
+#ax.text(0.5, 0.5, 'hello', transform=ax.transAxes,fontsize=40,color='gray', alpha=0.5,ha='center',va='center',rotation='30')
+plt.show()
 
 """
 ############# PCA ####
@@ -117,7 +129,7 @@ fig = plt.figure(figsize=(25,10))
 dn = dendrogram(Z,orientation='left',labels=labelarr)
 fig.tight_layout()
 fig.savefig(fastaFile[:len(fastaFile)-1]+'dendrogram.png')
-plt.show()
+####plt.show()
 #dn2 = dendrogram(Z2)
 #plt.show()
 

@@ -4,7 +4,7 @@ class Pdist:
 	def __init__(self, in_matrix,metric=1):
 		self.matrix = in_matrix
 		self.vector = self.getVectorDist(metric) 
-		self.vectorId = self.getVectorDistId(2) 
+		self.vectorId = self.getVectorDistId(metric) 
 		#self.euclidean = self.euclideanDist()
 	
 	def euclideanDist(self, vecA, vecB):
@@ -47,7 +47,9 @@ class Pdist:
 	def getVsAll(self, index):
 		vecCompare = []
 		for i in range(len(self.vectorId)):
-			if self.vectorId[i][0] == index or self.vectorId[i][1] == index:
-				vecCompare.append(self.vectorId[i])
+			if self.vectorId[i][0] == index:
+				vecCompare.append([self.vectorId[i][1],self.vectorId[i][2]])
+			elif self.vectorId[i][1] == index:
+				vecCompare.append([self.vectorId[i][0],self.vectorId[i][2]])
 		return vecCompare
 
