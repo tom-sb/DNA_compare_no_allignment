@@ -65,7 +65,10 @@ for i in range(n):
 print("##############################################")
 print("matriz triangular de similitus aqui abajo")
 print(vecid)
+newvec = pdist.getVsAll(3)
+print(newvec)
 
+"""
 ############# PCA ####
 #print(statarr)
 X=statarr
@@ -104,6 +107,8 @@ plt.title('Variable factor map (PCA)')
 plt.show()
 
 ######################
+"""
+
 
 Z=linkage(vec,'average')
 #Z2=linkage(statarr,'single',metric='euclidean')

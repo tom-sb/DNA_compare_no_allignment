@@ -43,3 +43,11 @@ class Pdist:
 				elif metric == 2:	
 					vecDist.append([i,j,self.euclideanDist(self.matrix[i], self.matrix[j])])
 		return vecDist
+
+	def getVsAll(self, index):
+		vecCompare = []
+		for i in range(len(self.vectorId)):
+			if self.vectorId[i][0] == index or self.vectorId[i][1] == index:
+				vecCompare.append(self.vectorId[i])
+		return vecCompare
+
