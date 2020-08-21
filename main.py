@@ -12,6 +12,7 @@ import numpy as np
 
 fastaFile = input('ingreser nombre de archivo contenedor de archivos .fasta: ')+'/'
 outpath = "out"+fastaFile
+inMetric = input('ingresa el nro de etica:\nManhattan (1)\nEuclidean(2)\n')
 ##############################
 with os.scandir() as itr: 
 	findin = False
@@ -55,7 +56,7 @@ print("minskowski distance r1")
 for i in range(n):
 	print(statarr[i])
 
-pdist = Pdist(statarr,metric=2)
+pdist = Pdist(statarr,metric=inMetric)
 vec = pdist.vector
 vecid = pdist.vectorId
 print("##############################################")
