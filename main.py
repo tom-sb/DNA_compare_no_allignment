@@ -12,7 +12,7 @@ import numpy as np
 
 fastaFile = input('ingreser nombre de archivo contenedor de archivos .fasta: ')+'/'
 outpath = "out"+fastaFile
-inMetric = input('ingresa el nro de etica:\nManhattan (1)\nEuclidean(2)\n')
+metric = input('ingresa el nro de etica:\nManhattan (1)\nEuclidean(2)\n')
 ##############################
 with os.scandir() as itr: 
 	findin = False
@@ -30,9 +30,6 @@ with os.scandir() as itr:
 		print('error al ingresar directorio, "'+fastaFile+'" no existe, ingrese un directorio q exista.')
 		raise SystemExit
 ###############################
-
-#arr = sorted(os.listdir(fastaFile))
-print(arr)
 
 n = len(arr)
 picarr=[]
@@ -56,7 +53,7 @@ print("minskowski distance r1")
 for i in range(n):
 	print(statarr[i])
 
-pdist = Pdist(statarr,metric=inMetric)
+pdist = Pdist(statarr,metric)
 vec = pdist.vector
 vecid = pdist.vectorId
 print("##############################################")
@@ -73,7 +70,6 @@ for i in range(n-1):
 	indexvec.append(labelarr[newvec[i][0]])
 	valvec.append(newvec[i][1])
 print("testtttttttt")
-print(newvec)
 fig, ax = plt.subplots()
 ax.plot(indexvec,valvec, '-o', ms=20, lw=2, alpha = 0.7, mfc='orange')
 plt.xticks(ha='left',rotation=-45)

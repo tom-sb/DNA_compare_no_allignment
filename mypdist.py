@@ -1,10 +1,10 @@
 import math
 
 class Pdist:
-	def __init__(self, in_matrix,metric=1):
+	def __init__(self, in_matrix,_metric):
 		self.matrix = in_matrix
-		self.vector = self.getVectorDist(metric) 
-		self.vectorId = self.getVectorDistId(metric) 
+		self.vector = self.getVectorDist(int(_metric)) 
+		self.vectorId = self.getVectorDistId(int(_metric)) 
 		#self.euclidean = self.euclideanDist()
 	
 	def euclideanDist(self, vecA, vecB):
